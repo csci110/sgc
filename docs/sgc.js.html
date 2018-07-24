@@ -1,6 +1,34 @@
-/** 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: sgc.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: sgc.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** 
  * @overview sgc - Simple Game Classes for learing programming. 
- * @author Steve Mattingly <mattinglys@dewv.edu>
+ * @author Steve Mattingly &lt;mattinglys@dewv.edu>
  * @version 2.0 (using {@link http://semver.org semantic versioning})
  */
 
@@ -192,7 +220,7 @@ class Game {
     removeSprite(sprite) {
         // Find sgc sprite in array and remove it
         let index = this._sprites.indexOf(sprite);
-        if (index < 0) return;
+        if (index &lt; 0) return;
         this._sprites.copyWithin(index, index + 1);
         this._sprites.pop();
 
@@ -228,10 +256,10 @@ class Game {
      */
     getSpritesOverlapping(x, y, width, height, spriteClass) {
         let results = [];
-        for (let iSprite = 0; iSprite < this._sprites.length; iSprite++) {
+        for (let iSprite = 0; iSprite &lt; this._sprites.length; iSprite++) {
             let sprite = this._sprites[iSprite];
-            if ((sprite.x < x + width) && (sprite.x + sprite.width > x) &&
-                (sprite.y < y + height) && (sprite.y + sprite.height > y)) {
+            if ((sprite.x &lt; x + width) &amp;&amp; (sprite.x + sprite.width > x) &amp;&amp;
+                (sprite.y &lt; y + height) &amp;&amp; (sprite.y + sprite.height > y)) {
                 if (spriteClass) {
                     if (sprite instanceof spriteClass) {
                         results.push(sprite);
@@ -277,8 +305,8 @@ Game.PlayState = class {
         });
 
         // Preload images 
-        for (let i = 0; i < game._cache.images.length; i++) {
-            if (game._cache.images[i].height && game._cache.images[i].width) {
+        for (let i = 0; i &lt; game._cache.images.length; i++) {
+            if (game._cache.images[i].height &amp;&amp; game._cache.images[i].width) {
                 game._phaserGame.load.spritesheet(game._cache.images[i].fileName, game._cache.images[i].fileName, game._cache.images[i].width, game._cache.images[i].height);
             } else {
                 game._phaserGame.load.image(game._cache.images[i].fileName, game._cache.images[i].fileName);
@@ -300,7 +328,7 @@ Game.PlayState = class {
         });
 
         // Set up sprites 
-        for (let i = 0; i < game._sprites.length; i++) {
+        for (let i = 0; i &lt; game._sprites.length; i++) {
             game._sprites[i]._createPhaserSprite();
         }
 
@@ -325,7 +353,7 @@ Game.PlayState = class {
      */
     update() {
         // Update each sprite
-        for (let i = 0; i < game._sprites.length; i++) {
+        for (let i = 0; i &lt; game._sprites.length; i++) {
             game._sprites[i]._update();
         }
 
@@ -336,12 +364,12 @@ Game.PlayState = class {
 
             // Call first sprite's collision handler, if it exists.
             if (sprite1.handleCollision) {
-                allHandlersSayBounce = allHandlersSayBounce && sprite1.handleCollision(sprite2);
+                allHandlersSayBounce = allHandlersSayBounce &amp;&amp; sprite1.handleCollision(sprite2);
             }
 
             // Call second sprite's collision handler, if it exists and is different from first.
-            if (sprite2.handleCollision && sprite2.handleCollision !== sprite1.handleCollision) {
-                allHandlersSayBounce = allHandlersSayBounce && sprite2.handleCollision(sprite1);
+            if (sprite2.handleCollision &amp;&amp; sprite2.handleCollision !== sprite1.handleCollision) {
+                allHandlersSayBounce = allHandlersSayBounce &amp;&amp; sprite2.handleCollision(sprite1);
             }
 
             return allHandlersSayBounce;
@@ -498,7 +526,7 @@ class Sprite {
         let angle = Math.round((-this._phaserSprite.body.angle) // counter-clockwise to clockwise
             *
             180 / Math.PI); // radians to degrees
-        while (angle < 0) angle += 360;
+        while (angle &lt; 0) angle += 360;
         return angle;
     }
 
@@ -610,33 +638,33 @@ class Sprite {
 
         // If key handlers are defined for this Sprite, call them as appropriate 
         let keyboard = game._phaserGame.input.keyboard;
-        if (this.handleLeftArrowKey && keyboard.isDown(Phaser.Keyboard.LEFT)) {
+        if (this.handleLeftArrowKey &amp;&amp; keyboard.isDown(Phaser.Keyboard.LEFT)) {
             this.handleLeftArrowKey();
         }
-        if (this.handleRightArrowKey && keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+        if (this.handleRightArrowKey &amp;&amp; keyboard.isDown(Phaser.Keyboard.RIGHT)) {
             this.handleRightArrowKey();
         }
-        if (this.handleUpArrowKey && keyboard.isDown(Phaser.Keyboard.UP)) {
+        if (this.handleUpArrowKey &amp;&amp; keyboard.isDown(Phaser.Keyboard.UP)) {
             this.handleUpArrowKey();
         }
-        if (this.handleDownArrowKey && keyboard.isDown(Phaser.Keyboard.DOWN)) {
+        if (this.handleDownArrowKey &amp;&amp; keyboard.isDown(Phaser.Keyboard.DOWN)) {
             this.handleDownArrowKey();
         }
-        if (this.handleSpacebar && keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+        if (this.handleSpacebar &amp;&amp; keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
             this.handleSpacebar();
         }
-        if (this.handleEscKey && keyboard.isDown(Phaser.Keyboard.ESC)) {
+        if (this.handleEscKey &amp;&amp; keyboard.isDown(Phaser.Keyboard.ESC)) {
             this.handleEscKey();
         }
-        if (this.handleEnterKey && keyboard.isDown(Phaser.Keyboard.ENTER)) {
+        if (this.handleEnterKey &amp;&amp; keyboard.isDown(Phaser.Keyboard.ENTER)) {
             this.handleEnterKey();
         }
         if (this.handleAlphaNumericKeys) {
             if (keyboard.isDown(game._lastKeyCode)) {
                 let keyChar = String.fromCharCode(game._lastKeyCode);
-                if ((keyChar >= "A" && keyChar <= "Z") // alphabetic
+                if ((keyChar >= "A" &amp;&amp; keyChar &lt;= "Z") // alphabetic
                     ||
-                    (keyChar >= "0" && keyChar <= "9")) // numeric  
+                    (keyChar >= "0" &amp;&amp; keyChar &lt;= "9")) // numeric  
                 {
                     this.handleAlphaNumericKeys(keyChar);
                 }
@@ -650,7 +678,7 @@ class Sprite {
             const MOUSE_TIME_THRESHOLD = 25; // 25 msec is empirical kludge, trying to avoid multiple hits for one click
 
             // If mouse left button down handler is defined for this Sprite, call it as appropriate
-            if (this.handleMouseLeftButtonDown && mouse.leftButton.justPressed(MOUSE_TIME_THRESHOLD)) {
+            if (this.handleMouseLeftButtonDown &amp;&amp; mouse.leftButton.justPressed(MOUSE_TIME_THRESHOLD)) {
                 this.handleMouseLeftButtonDown();
             }
 
@@ -662,7 +690,7 @@ class Sprite {
         }
 
         // If boundary contact handler is defined for this Sprite, call it as appropriate
-        if (this.handleBoundaryContact && (this.x < 0 || this.y < 0 || this.x > game.displayWidth || this.y > game.displayHeight)) {
+        if (this.handleBoundaryContact &amp;&amp; (this.x &lt; 0 || this.y &lt; 0 || this.x > game.displayWidth || this.y > game.displayHeight)) {
             this.handleBoundaryContact();
         }
 
@@ -700,7 +728,7 @@ class Sprite {
     defineAnimation(name, firstFrame, lastFrame) {
         let frameArray = [];
 
-        for (let iFrame = firstFrame; iFrame <= lastFrame; iFrame++) {
+        for (let iFrame = firstFrame; iFrame &lt;= lastFrame; iFrame++) {
             frameArray.push(iFrame);
         }
 
@@ -723,12 +751,12 @@ class Sprite {
         if (typeof this._phaserSprite === "undefined") return;
 
         let currentAnimation = this._phaserSprite.animations.currentAnim;
-        if (currentAnimation && currentAnimation.isPlaying && currentAnimation.name === animationName) {
+        if (currentAnimation &amp;&amp; currentAnimation.isPlaying &amp;&amp; currentAnimation.name === animationName) {
             return; // animation is already playing
         }
 
         // Register newly added animations with Phaser 
-        for (let i = 0; i < this._cache.animations.length; i++) {
+        for (let i = 0; i &lt; this._cache.animations.length; i++) {
             if (!this._phaserSprite.animations.getAnimation(this._cache.animations[i].name)) {
                 this._phaserSprite.animations.add(this._cache.animations[i].name, this._cache.animations[i].frames, game.frameRate);
             }
@@ -758,11 +786,11 @@ class Sprite {
         let arctangent = Math.atan(tangent) * 180 / Math.PI; // degrees
 
         let baseAngle = 90;
-        if (this.y < y) {
+        if (this.y &lt; y) {
             baseAngle = 270;
         }
 
-        if (this.x < x) {
+        if (this.x &lt; x) {
             this.angle = baseAngle + arctangent;
         } else {
             this.angle = baseAngle - arctangent;
@@ -927,7 +955,7 @@ class Sprite {
  * If both Sprites involved in the collison are instances of subclasses that override 
  * the base implementation, sgc calls both overrides unless they are the same 
  * function (i.e., the Sprites are of the same subclass). If all overrides called
- * for the collision return <code>true</code>, the default bounce behavior will 
+ * for the collision return &lt;code>true&lt;/code>, the default bounce behavior will 
  * still occur.
  * 
  * @method handleCollision
@@ -945,3 +973,26 @@ class Sprite {
 let game = new Game();
 
 export { game, Sprite };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Game.html">Game</a></li><li><a href="Sprite.html">Sprite</a></li></ul><h3>Global</h3><ul><li><a href="global.html#game">game</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Tue Jul 24 2018 21:36:23 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
