@@ -1,5 +1,5 @@
 /** 
- * @overview sgc - Simple Game Classes for learing programming. 
+ * @overview sgc - Simple Game Classes for learning programming. 
  * @author Steve Mattingly <mattinglys@dewv.edu>
  * @version 2.0 (using {@link http://semver.org semantic versioning})
  */
