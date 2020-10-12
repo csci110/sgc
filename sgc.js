@@ -667,7 +667,7 @@ class Sprite {
         }
 
         // Update Phaser physics engine velocities if this Sprite's speed or direction was changed.
-        if (this._cache.speedChanged || this._cache.angleChanged) {
+        if (typeof this._phaserSprite !== "undefined" && this._cache.speedChanged || this._cache.angleChanged)) {
             let radiansCW = ((-this.angle) // counter-clockwise to clockwise 
                 *
                 Math.PI / 180) + 2 * Math.PI; // degrees to radians
