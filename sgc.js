@@ -667,7 +667,8 @@ class Sprite {
         }
 
         // Update Phaser physics engine velocities if this Sprite's speed or direction was changed.
-        if (typeof this._phaserSprite !== "undefined" && this._cache.speedChanged || this._cache.angleChanged)) {
+      if (typeof this._phaserSprite !== "undefined" && (this._cache.speedChanged || this._cache.angleChanged)) {
+       
             let radiansCW = ((-this.angle) // counter-clockwise to clockwise 
                 *
                 Math.PI / 180) + 2 * Math.PI; // degrees to radians
@@ -750,22 +751,15 @@ class Sprite {
      * @since 1.8
      * @public
      */
-    aimFor(x, y) {
-        // TODO check: is this correct for all directions?
-        let opposite = Math.abs(this.x - x);
-        let adjacent = Math.abs(this.y - y);
-        let tangent = opposite / adjacent; // radians
-        let arctangent = Math.atan(tangent) * 180 / Math.PI; // degrees
-
-        let baseAngle = 90;
-        if (this.y < y) {
-            baseAngle = 270;
-        }
-
-        if (this.x < x) {
-            this.angle = baseAngle + arctangent;
+    aimFor(x, y) {        
+        let dx = x - this.x;
+        let dy = this.y - y;
+        let tangent = dy / dx; 
+        let arctangent = Math.atan(tangent) * 180.0 / Math.PI; // degrees
+        if (dx < 0) {
+            this.angle = 180.0 + arctangent;
         } else {
-            this.angle = baseAngle - arctangent;
+            this.angle = arctangent;
         }
     }
 }
